@@ -1,0 +1,98 @@
+﻿<Window x:Class="AvalonDockDemo.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AvalonDockDemo.Views"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:avalondock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        mc:Ignorable="d"
+        Title="MainView" Height="450" Width="800">
+    <Grid>
+        <avalondock:DockingManager>
+            <!--停靠管理器，核心控件，负责管理浮动窗体、布局存储、恢复，样式主题等。在XAML中，是AvaDock元素的根节点。-->
+            <avalondock:DockingManager.Theme>
+                <avalondock:Vs2013LightTheme/>
+            </avalondock:DockingManager.Theme>
+            <avalondock:LayoutRoot>
+                <!--***********************************************************************************************
+                布局根节点，会完全占满DockingManager中的空间。包含四个属性，LeftSide，RightSide,TopSide,BottomSide,
+                分别用于展示DockingManager中左右上下四个位置的内容，但初始状态为隐藏状态。
+                另外两个属性FloatingWindows，Hidden分别为浮动窗体集合和隐藏窗体集合。
+                当一个窗格浮动时，AvalonDock会将其从其所在组中删除，然后放置到FloatingWindows集合中。
+                当一个窗格关闭时，会将其放置在Hidden集合中。
+                ***********************************************************************************************-->
+                <avalondock:LayoutPanel >
+                    <!--***********************************************************************************************
+                    布局面板，LayoutRoot中的内容控件，完全占满LayoutRoot中的空间，
+                    可嵌套 ,可以设定Orientation 属性，控件布局组的浮动方向。实际的窗格都位于LayoutPanel节点下。
+                    ***********************************************************************************************-->
+                    <avalondock:LayoutAnchorablePaneGroup Orientation="Vertical" DockWidth="180" FloatingWidth="180">
+                        <!--可停靠窗格组，是可停靠窗格LayoutAnchorablePane的容器。通过设置Orientation 属性，用于管理多个可停靠窗格的浮动方向。-->
+                        <avalondock:LayoutAnchorablePane>
+                            <!--可停靠窗格，浮动窗格是可停靠控件LayoutAnchorable的容器。一个窗格中，可以有多个可停靠控件。
+                            浮动窗格中的可停靠控件只能是LayoutAnchorable.窗格大小设定后，不能自动改变。-->
+                            <avalondock:LayoutAnchorable Title="UpperL1">
+                                <!--可停靠内容，一般放置在LayoutAnchorablePane中，其内容可以是用户自定义控件类型，比如，在UserControl中设置好WPF基础控件布局,
+                                然后将整个UserControl放置在LayoutAnchorable中，这样，整个UserControl内容就可以随着可停靠控件一起浮动或者停靠-->
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                            <avalondock:LayoutAnchorable Title="UpperL2">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                        </avalondock:LayoutAnchorablePane>
+                        <avalondock:LayoutAnchorablePane>
+                            <avalondock:LayoutAnchorable Title="LowerL1">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                            <avalondock:LayoutAnchorable Title="LowerL2">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                        </avalondock:LayoutAnchorablePane>
+                    </avalondock:LayoutAnchorablePaneGroup>
+                    <avalondock:LayoutPanel Orientation="Vertical">
+                        <avalondock:LayoutDocumentPaneGroup Orientation="Horizontal">
+                            <!--文档窗格组，是文档窗格LayoutDocumentPane的容器。通过设置Orientation 属性，用于管理多个文档窗格的浮动方向。-->
+                        <avalondock:LayoutDocumentPane>
+                                <!--文档窗格，与LayoutAnchorablePane类似，也是可停靠控件的容器，文档窗格类中可以放置可停靠控件LayoutAnchorable，
+                            也可以放置文档控件LayoutDocument，LayoutDocunemtPane会自动占满窗体的窗体布局中的剩余空间。-->
+                                <avalondock:LayoutDocument Title="Doc1">
+                                    <!--文档，与LayoutAnchorable功能类似，区别在于LayoutDoucument会随着LayoutDocumentPane一起占满窗体剩余空间。-->
+                                    <TextBox>Doc1</TextBox>
+                            </avalondock:LayoutDocument>
+                            <avalondock:LayoutDocument Title="Doc2">
+                                <TextBox>Doc2</TextBox>
+                            </avalondock:LayoutDocument>
+                            </avalondock:LayoutDocumentPane>
+                    </avalondock:LayoutDocumentPaneGroup>
+                        <avalondock:LayoutAnchorablePaneGroup DockMinHeight="180" FloatingHeight="180">
+                            <avalondock:LayoutAnchorablePane>
+                                <avalondock:LayoutAnchorable Title="Bottom1"></avalondock:LayoutAnchorable>
+                                <avalondock:LayoutAnchorable Title="Bottom2"></avalondock:LayoutAnchorable>
+                                <avalondock:LayoutAnchorable Title="Bottom3"></avalondock:LayoutAnchorable>
+                            </avalondock:LayoutAnchorablePane>
+                        </avalondock:LayoutAnchorablePaneGroup>
+                    </avalondock:LayoutPanel>
+                    <avalondock:LayoutAnchorablePaneGroup Orientation="Vertical" DockWidth="180" FloatingWidth="180">
+                        <avalondock:LayoutAnchorablePane>
+                            <avalondock:LayoutAnchorable Title="UpperR1">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                            <avalondock:LayoutAnchorable Title="UpperR2">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                        </avalondock:LayoutAnchorablePane>
+                        <avalondock:LayoutAnchorablePane>
+                            <avalondock:LayoutAnchorable Title="LowerR1">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                            <avalondock:LayoutAnchorable Title="Lower2">
+                                <TextBlock>fffff</TextBlock>
+                            </avalondock:LayoutAnchorable>
+                        </avalondock:LayoutAnchorablePane>
+                    </avalondock:LayoutAnchorablePaneGroup>
+                </avalondock:LayoutPanel>
+            </avalondock:LayoutRoot>
+        </avalondock:DockingManager>
+    </Grid>
+</Window>
